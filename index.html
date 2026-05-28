@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerala State Lottery - Multi-Language Booking</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    body { font-family: 'Poppins', sans-serif; background-color: #0b1329; }
+    @keyframes tiktik { 0%, 100% { opacity:1; transform:scale(1); } 50% { opacity:.2; transform:scale(.92); } }
+    .live-blink { animation: tiktik .8s infinite ease-in-out; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+</style>
+</head>
+<body class="min-h-screen flex justify-center items-center p-2 md:p-4">
+
+<div class="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
+
+    <div class="m-3 bg-pink-50 border border-pink-300 rounded-2xl p-4 flex justify-between items-center shadow-md ring-2 ring-pink-100">
+        <div>
+            <p class="text-sm font-bold text-slate-800">
+                <span id="live-user-name" class="text-pink-600 font-extrabold uppercase tracking-wide">Pradeep Rawat</span> 
+                <span id="live-from-text" class="text-slate-500 font-normal text-xs ml-1">from</span> 
+                <span id="live-user-state" class="text-slate-700 font-bold capitalize ml-1">uttarakhand</span>
+            </p>
+            <p id="live-user-tickets" class="text-xs text-slate-500 font-medium mt-0.5">booked 🎟️ (1) tickets</p>
+        </div>
+        <div id="live-user-paid" class="bg-pink-600 text-white border border-pink-700 text-xs font-black px-3 py-1.5 rounded-xl text-center shadow-sm uppercase tracking-wider">
+            ₹149 paid
+        </div>
+    </div>
+
+    <div class="mx-3 bg-slate-900 rounded-xl p-3 flex items-center justify-between border border-slate-800">
+        <span class="flex items-center gap-1.5 bg-red-600 px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-widest text-white font-black">
+            <span class="h-1.5 w-1.5 bg-white rounded-full live-blink"></span> live
+        </span>
+        <span id="sub-banner-text" class="text-xs text-slate-200 font-bold tracking-wide">kerala state lottery live result today</span>
+    </div>
+
+    <div class="mx-3 my-2 border border-slate-200 rounded-xl p-3 bg-slate-50 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="flex items-center gap-1 bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded uppercase font-black">
+                <span class="h-1.5 w-1.5 bg-red-500 rounded-full live-blink"></span> live
+            </span>
+            <span id="result-label" class="text-xs font-bold text-slate-700 uppercase tracking-wider">today's result:</span>
+        </div>
+        <div id="live-ticket-ticker" class="bg-slate-200 px-4 py-1 rounded-xl border border-slate-300 font-black tracking-widest text-slate-800 text-sm">
+             KL-454203
+        </div>
+    </div>
+
+    <div class="px-4 pb-4 space-y-3.5">
+        
+        <div>
+            <label id="language-label" class="block text-xs font-bold text-slate-600 mb-1">👉 Choose Your Language 👈</label>
+            <select id="langSelect" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-slate-800">
+                <option value="en">English</option>
+                <option value="hi">Hindi (हिंदी)</option>
+                <option value="bn">Bengali (বাংলা)</option>
+                <option value="te">Telugu (తెలుగు)</option>
+                <option value="mr">Marathi (मराठी)</option>
+                <option value="ta">Tamil (தமிழ்)</option>
+                <option value="gu">Gujarati (ગુજરાતી)</option>
+                <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                <option value="ml">Malayalam (മലയാളം)</option>
+                <option value="or">Odia (ଓଡ଼ିଆ)</option>
+                <option value="pa">Punjab (ਪੰਜਾਬੀ)</option>
+                <option value="as">Assamese (অসমীয়া)</option>
+                <option value="ur">Urdu (اردو)</option>
+                <option value="sat">Santhali (ᱥᱟᱱᱛᱟᱲᱤ)</option>
+                <option value="sa">Sanskrit (संस्कृतम्)</option>
+                <option value="ne">Nepali (नेपाली)</option>
+                <option value="kok">Konkani (कोंकणी)</option>
+                <option value="mai">Maithili (मैथिली)</option>
+                <option value="doi">Dogri (डोगरी)</option>
+                <option value="mni">Manipuri (মৈতৈলোন)</option>
+                <option value="brx">Bodo (बर')</option>
+                <option value="ks">Kashmiri (کأشुर)</option>
+                <option value="sd">Sindhi (سنڌي)</option>
+            </select>
+        </div>
+
+        <div>
+            <label id="name-label" class="block text-xs font-bold text-slate-600 mb-1">👉 INTER YOUR NAME 👈</label>
+            <div class="relative">
+                <span class="absolute left-3 top-2.5 text-slate-400">👤</span>
+                <input type="text" id="custName" placeholder="enter your name" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-slate-800">
+            </div>
+        </div>
+
+        <div>
+            <label id="whatsapp-label" class="block text-xs font-bold text-slate-600 mb-1">📲 enter your WhatsApp number 📱</label>
+            <div class="relative">
+                <span class="absolute left-3 top-2.5 text-slate-400">📞</span>
+                <input type="tel" id="custWhatsapp" placeholder="enter mobile number" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-slate-800 font-semibold">
+            </div>
+        </div>
+
+        <div>
+            <label id="ticket-label" class="block text-xs font-bold text-slate-600 mb-1.5">🥳 Choose Your Lucky Ticket Number 🥳</label>
+            <div id="tickets-grid" class="grid grid-cols-2 gap-2 max-h-44 overflow-y-auto p-1.5 border border-slate-200 rounded-xl bg-slate-50">
+                </div>
+        </div>
+
+        <div class="bg-slate-900 text-white rounded-xl p-3 flex justify-between items-center font-bold text-xs uppercase tracking-wider">
+            <div><span id="selected-text">Selected:</span> <span id="ticketCount" class="text-amber-400 font-black">0</span> <span id="ticket-unit">Ticket(s)</span></div>
+            <div><span id="amount-text">Amount:</span> <span id="totalAmount" class="text-amber-400 font-black text-sm">₹0</span></div>
+        </div>
+
+        <button onclick="sendToWhatsApp()" id="submit-btn" class="w-full bg-slate-800 hover:bg-black transition text-amber-400 border border-amber-500/20 py-3.5 rounded-xl font-bold shadow-md flex justify-center items-center gap-2 cursor-pointer uppercase text-xs tracking-wider">
+            📲 confirm payment & get tickets
+        </button>
+    </div>
+</div>
+
+<script>
+// UPDATED WHATSAPP NUMBER
+const MY_WHATSAPP_NUMBER = "8969388618"; 
+
+// 28 STATES DATA WITH LOGICAL REGIONAL FULL NAMES (FIRSTNAME + SURNAME)
+const indiaStateDatabase = [
+    { state: "andhra pradesh", names: ["Chandrasekhar Naidu", "Venkat Ramakrishna", "Srinivas Rao", "K. Rama Rao", "Anand Sai Reddy"] },
+    { state: "arunachal pradesh", names: ["Tashi Dorjee", "Kiren Wangchu", "Pema Khandu", "Gegong Apang", "Nabam Tuki"] },
+    { state: "assam", names: ["Bikramjit Saikia", "Ankur Borah", "Jatin Kalita", "Diganta Barman", "Pranjal Gayan"] },
+    { state: "bihar", names: ["Satish Kumar Mishra", "Nitish Kumar Yadav", "Rakesh Kumar Singh", "Sanjay Sharma", "Amit Paswan"] },
+    { state: "chhattisgarh", names: ["Ramesh Kumar Sahu", "Alok Baghel", "Deepak Diwan", "Shravan Mandavi", "Bhupesh Agrawal"] },
+    { state: "goa", names: ["Francis D'Souza", "Rahul Fernandes", "Amit Rodrigues", "Prasad Naik", "Sandeep Sawant"] },
+    { state: "gujarat", names: ["Hardik Patel", "Jayesh Shah", "Nitin Bhai Mehta", "Vijay Solanki", "Arvind Prajapati"] },
+    { state: "haryana", names: ["Jaideep Hooda", "Sandeep Chautala", "Virender Yadav", "Manpreet Singh", "Amit Phogat"] },
+    { state: "himachal pradesh", names: ["Anil Kumar Thakur", "Suresh Sharma", "Vikram Singh Verma", "Karan Negi", "Rajesh Rana"] },
+    { state: "jharkhand", names: ["Arjun Mahto", "Shibu Soren", "Hemant Oraon", "Rameshwar Pandey", "Vijay Munda"] },
+    { state: "karnataka", names: ["H. D. Kumaraswamy", "Manjunath Gowda", "Suresh Hegde", "Prakash Shetty", "Chethan Kumar"] },
+    { state: "kerala", names: ["Thomas Kurian", "Ranjith Nair", "Madhavan Menon", "Suresh Pillai", "Babu Rajan"] },
+    { state: "madhya pradesh", names: ["Shivraj Chouhan", "Dinesh Mishra", "Rajesh Sharma", "Kamal Patel", "Alok Tiwari"] },
+    { state: "maharashtra", names: ["Sachin Patil", "Rahul Deshmukh", "Sanjay Shinde", "Vikas Gaikwad", "Nitin Joshi"] },
+    { state: "manipur", names: ["N. Biren Singh", "Thokchom Meitei", "Rajesh Sharma", "L. Singh"] },
+    { state: "meghalaya", names: ["Conrad Sangma", "James Marak", "Prestone Lyngdoh", "Sanbor Shullai"] },
+    { state: "mizoram", names: ["Lalthanza Sailo", "Zodinga Ralte", "Lalduhawma", "K. Lalremruata"] },
+    { state: "nagaland", names: ["Neiphiu Rio", "Toshi Angami", "Konyak Ao", "Kekhrie Sema"] },
+    { state: "odisha", names: ["Naveen Patnaik", "Sambit Das", "Manoranjan Mohapatra", "Pradeep Pradhan", "Sujit Mishra"] },
+    { state: "punjab", names: ["Paramjit Singh Dhillon", "Gurpreet Singh Sidhu", "Amritpal Grewal", "Harbhajan Sandhu"] },
+    { state: "rajasthan", names: ["Ashok Gehlot", "Gajendra Singh Rathore", "Suresh Sharma", "Ram निवास Meena"] },
+    { state: "sikkim", names: ["Pawan Chamling", "Prem Singh Tamang", "Karma Lepcha", "Dorjee Bhutia"] },
+    { state: "tamil nadu", names: ["K. Ramanathan", "M. Murugan", "S. Ananthan", "R. Selvam", "Vijay Kumar"] },
+    { state: "telangana", names: ["K. Chandrashekar Rao", "M. Srinivas Reddy", "T. Krishna Chary", "V. Laxman Goud"] },
+    { state: "tripura", names: ["Biplab Kumar Deb", "Manik Sarkar", "Sudip Roy Barman", "Asish Das"] },
+    { state: "uttar pradesh", names: ["Amit Kumar Mishra", "Yogendra Yadav", "Akhilesh Tiwari", "Sanjay Pandey", "Ravi Pratap Singh"] },
+    { state: "uttarakhand", names: ["Pradeep Rawat", "Sanjay Negi", "Vijay Bisht", "Ramesh Pant", "Harish Dhami"] },
+    { state: "west bengal", names: ["Abhishek Banerjee", "Arijit Chatterjee", "Sourav Mukherjee", "Swapan Das", "Subrata Ghosh"] },
+    { state: "delhi", names: ["Rahul Arora", "Sanjay Gupta", "Rajeev Kapoor", "Amit Sharma", "Gaurav Malhotra"] },
+    { state: "jammu & kashmir", names: ["Raman Sharma", "Vijay Bhat", "Sanjay Raina", "Tariq Ahmad Dar", "M. Ashraf Lone"] },
+    { state: "ladakh", names: ["Jamyang Namgyal", "Stanzin Tundup", "Rigzin Tsewang"] }
+];
+
+// 23 LANGUAGES DICTIONARY MATRIX
+const fullPageTranslations = {
+    en: { banner: "kerala state lottery live result today", resultLabel: "today's result:", chooseLang: "👉 Choose Your Language 👈", enterName: "👉 INTER YOUR NAME 👈", namePlaceholder: "enter your name", enterWhatapp: "📲 enter your WhatsApp number 📱", whatsappPlaceholder: "enter mobile number", chooseTicket: "🥳 Choose Your Lucky Ticket Number 🥳", selectedText: "Selected:", ticketUnit: "Ticket(s)", amountText: "Amount:", submitBtn: "📲 confirm payment & get tickets", liveFrom: "from", liveBookedText: "booked 🎟️ ({num}) tickets", livePaidText: "₹{amt} paid", alertName: "Please enter your Name", alertPhone: "Please enter your Mobile Number", alertTicket: "Please choose at least one ticket number!" },
+    hi: { banner: "केरल स्टेट लॉटरी लाइव रिजल्ट आज", resultLabel: "आज का रिजल्ट:", chooseLang: "👉 अपनी भाषा चुनें 👈", enterName: "👉 अपना नाम दर्ज करें 👈", namePlaceholder: "अपना नाम यहाँ लिखें", enterWhatapp: "📲 अपना व्हाट्सएप नंबर दर्ज करें 📱", whatsappPlaceholder: "मोबाइल नंबर दर्ज करें", chooseTicket: "🥳 अपना लकी टिकट नंबर चुनें 🥳", selectedText: "चयनित:", ticketUnit: "टिकट", amountText: "कुल राशि:", submitBtn: "📲 भुगतान की पुष्टि करें और टिकट पाएं", liveFrom: "निवासी", liveBookedText: "🎟️ ({num}) टिकट book किया", livePaidText: "₹{amt} भुगतान किया", alertName: "कृपया अपना नाम दर्ज करें", alertPhone: "कृपया अपना mobile नंबर दर्ज करें", alertTicket: "कृपया कम से कम एक टिकट नंबर चुनें!" },
+    bn: { banner: "কেরালা স্টেট লটারি লাইভ রেজাল্ট আজ", resultLabel: "আজকের ফলাফল:", chooseLang: "👉 আপনার ভাষা নির্বাচন করুন 👈", enterName: "👉 আপনার নাম লিখুন 👈", namePlaceholder: "আপনার নাম লিখুন", enterWhatapp: "📲 আপনার হোয়াটসঅ্যাপ নম্বর লিখুন 📱", whatsappPlaceholder: "মোবাইল নম্বর লিখুন", chooseTicket: "🥳 আপনার লাকি টিকিট নম্বর বেছে নিন 🥳", selectedText: "নির্বাচিত:", ticketUnit: "টিকিট", amountText: "মোট পরিমাণ:", submitBtn: "📲 পেমেন্ট নিশ্চিত করুন এবং টিকিট নিন", liveFrom: "থেকে", liveBookedText: "🎟️ ({num}) টিকিট বুক করেছেন", livePaidText: "₹{amt} পরিশোধিত", alertName: "আপনার নাম লিখুন দয়া করে", alertPhone: "আপনার মোবাইল নম্বর লিখুন দয়া করে", alertTicket: "দয়া করে অন্তত একটি টিকিট নম্বর চয়ন করুন!" },
+    te: { banner: "కేరళ స్టేట్ లాటరీ లైవ్ రిజల్ట్ ఈరోజు", resultLabel: "ఈరోజు ఫలితం:", chooseLang: "👉 మీ భాషను ఎంచుకోండి 👈", enterName: "👉 మీ పేరు నమోదు చేయండి 👈", namePlaceholder: "మీ పేరు టైప్ చేయండి", enterWhatapp: "📲 మీ వాట్సాప్ నंबర్ నమోదు చేయండి 📱", whatsappPlaceholder: "మొబైల్ నंबర్ టైప్ చేయండి", chooseTicket: "🥳 మీ లక్కీ టికెట్ నंबర్ ఎంచుకోండి 🥳", selectedText: "ఎంచుకున్నవి:", ticketUnit: "టిక్యూట్", amountText: "మొత్తం ధర:", submitBtn: "📲 చెల్లింపును ధృవీకరించి టికెట్లు పొందండి", liveFrom: "నుండి", liveBookedText: "🎟️ ({num}) టిక్కెట్లు బుక్ చేసారు", livePaidText: "₹{amt} చెల్లించారు", alertName: "దయచేసి మీ పేరును నమోదు చేయండి", alertPhone: "దయచేసి మీ మొబైల్ నंबర్ నమోదు చేయండి", alertTicket: "దయచేసి కనీసం ఒక టికెట్ నंबర్ ఎంచుకోండి!" },
+    mr: { banner: "केरल स्टेट लॉटरी लाईव्ह निकाल आज", resultLabel: "आजचा निकाल:", chooseLang: "👉 तुमची भाषा निवडा 👈", enterName: "👉 आपले नाव प्रविष्ट करा 👈", namePlaceholder: "तुमचे नाव लिहा", enterWhatapp: "📲 आपला व्हॉट्सॲप नंबर प्रविष्ट करा 📱", whatsappPlaceholder: "मोबाईल नंबर लिहा", chooseTicket: "🥳 तुमचा लकी तिकीट नंबर निवडा 🥳", selectedText: "निवडलेले:", ticketUnit: "तिकीट", amountText: "एकूण रक्कम:", submitBtn: "📲 पेमेंटची पुष्टी करा आणि तिकीट मिळवा", liveFrom: "येथून", liveBookedText: "🎟️ ({num}) तिकीट बुक केले", livePaidText: "₹{amt} भरले", alertName: "कृपया आपले नाव प्रविष्ट करा", alertPhone: "कृपया आपला मोबाईल नंबर प्रविष्ट करा", alertTicket: "कृपया किमान एक तिकीट क्रमांक निवडा!" },
+    ta: { banner: "கேரளா மாநில லாட்டரி நேரடி முடிவு இன்று", resultLabel: "இன்றைய முடிவு:", chooseLang: "👉 மொழியைத் தேர்ந்தெடுக்கவும் 👈", enterName: "👉 உங்கள் பெயரை உள்ளிடவும் 👈", namePlaceholder: "பெயரை உள்ளிடவும்", enterWhatapp: "📲 உங்கள் வாட்ஸ்அப் எண்ணை உள்ளிடவும் 📱", whatsappPlaceholder: "கைபேசி எண் உள்ளிடவும்", chooseTicket: "🥳 உங்கள் அதிர்ஷ்ட டிக்கெட்டை தேர்வு செய்யவும் 🥳", selectedText: "தேர்ந்தெடுக்கப்பட்டது:", ticketUnit: "டிக்கெட்", amountText: "மொத்த தொகை:", submitBtn: "📲 கட்டணத்தை உறுதிசெய்து டிக்கெட் பெறவும்", liveFrom: "இருந்து", liveBookedText: "🎟️ ({num}) டிக்கெட்டுகள் முன்பதிவு செய்யப்பட்டன", livePaidText: "₹{amt} செலுத்தப்பட்டது", alertName: "தயவுசெய்து உங்கள் பெயரை உள்ளிடவும்", alertPhone: "தயவுசெய்து உங்கள் மொபைல் எண்ணை உள்ளிடவும்", alertTicket: "தயவுசெய்து ஒரு டிக்கெட் எண்ணையாவது தேர்ந்தெடுக்கவும்!" },
+    gu: { banner: "કેરળ સ્ટેટ લોટري لائيو પરિણામ આજે", resultLabel: "آجનું પરિણામ:", chooseLang: "👉 તમારી ભાષા પસંદ કરો 👈", enterName: "👉 તમારું નામ દાખલ કરો 👈", namePlaceholder: "તમારું નામ લખો", enterWhatapp: "📲 તમારો વોટ્સએપ નંબર દાખલ કરો 📱", whatsappPlaceholder: "મોબાઈલ નંબર લખો", chooseTicket: "🥳 તમારો لکي ટિકિટ નંબર પસંદ કરો 🥳", selectedText: "પસંદ કરેલ:", ticketUnit: "ટિકિટ", amountText: "કુલ રકમ:", submitBtn: "📲 પેમેન્ટ કન્ફર્મ કરો અને ટિકิต મેળવો", liveFrom: "થી", liveBookedText: "🎟️ ({num}) ટિકિટ બુક કરી", livePaidText: "₹{amt} ચૂકવ્યા", alertName: "કૃપા કરીને તમારું નામ દાખલ કરો", alertPhone: "કૃપા કરીને તમારો મોબાઈલ નંબર દાખલ કરો", alertTicket: "કૃપા કરીને ઓછામાં ઓછી એક ટિકિટ પસંદ કરો!" },
+    kn: { banner: "ಕೇರಳ ರಾಜ್ಯ ಲಾಟರಿ ಲೈವ್ ಫಲಿತಾಂಶ ಇಂದು", resultLabel: "ಇಂದಿನ ಫಲಿತಾಂಶ:", chooseLang: "👉 ನಿಮ್ಮ ಭಾಷೆಯನ್ನು ಆರಿಸಿ 👈", enterName: "👉 ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ 👈", namePlaceholder: "ನಿಮ್ಮ ಹೆಸರು ಬರೆಯಿರಿ", enterWhatapp: "📲 ನಿಮ್ಮ ವಾಟ್ಸಾಪ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ 📱", whatsappPlaceholder: "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಬರೆಯಿರಿ", chooseTicket: "🥳 ನಿಮ್ಮ ಅದೃಷ್ಟದ ಟಿಕೆಟ್ ಸಂಖ್ಯೆಯನ್ನು ಆರಿಸಿ 🥳", selectedText: "ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ:", ticketUnit: "ಟಿಕೆಟ್", amountText: "ಒಟ್ಟು ಮೊತ್ತ:", submitBtn: "📲 ಪಾವತಿಯನ್ನು ಖಚಿತಪಡಿಸಿ ಮತ್ತು ಟಿಕೆಟ್ ಪಡೆಯಿರಿ", liveFrom: "ಇಂದ", liveBookedText: "🎟️ ({num}) ಟಿಕೆಟ್‌ಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ", livePaidText: "₹{amt} ಪಾವತಿಸಲಾಗಿದೆ", alertName: "దయವಿಟ್ಟು ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ", alertPhone: "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ", alertTicket: "ದಯವಿಟ್ಟು ಕನಿಷ್ಠ ಒಂದು ಟಿಕೆಟ್ ಸಂಖ್ಯೆಯನ್ನು ಆರಿಸಿ!" },
+    ml: { banner: "കേരള സംസ്ഥാന ഭാഗ്യക്കുറി തത്സമയ ഫലം ഇന്ന്", resultLabel: "ഇന്നത്തെ ഫലം:", chooseLang: "👉 നിങ്ങളുടെ ഭാഷ തിരഞ്ഞെടുക്കുക 👈", enterName: "👉 നിങ്ങളുടെ പേര് രേഖപ്പെടുത്തുക 👈", namePlaceholder: "പേര് ടൈപ്പ് ചെയ്യുക", enterWhatapp: "📲 നിങ്ങളുടെ വാട്ട്സ്ആപ്പ് നമ്പർ നൽകുക 📱", whatsappPlaceholder: "മൊബൈൽ നമ്പർ നൽകുക", chooseTicket: "🥳 നിങ്ങളുടെ ഭാഗ്യ നമ്പർ തിരഞ്ഞെടുക്കുക 🥳", selectedText: "തിരഞ്ഞെടുത്തവ:", ticketUnit: "ടിക്കറ്റ്", amountText: "ആകെ തുക:", submitBtn: "📲 പേയ്മെന്റ് സ്ഥിരീകരിച്ച് ടിക്കറ്റ് നേടുക", liveFrom: "നിന്നും", liveBookedText: "🎟️ ({num}) ടിക്കറ്റുകൾ ബുക്ക് ചെയ്തു", livePaidText: "₹{amt} അടച്ചു", alertName: "ദയവായി നിങ്ങളുടെ പേര് നൽകുക", alertPhone: "ദയവായി നിങ്ങളുടെ മൊബൈൽ നമ്പർ നൽകുക", alertTicket: "ദയവായി ഒരു ടിക്കറ്റ് നമ്പറെങ്കിലും തിരഞ്ഞെടുക്കുക!" },
+    or: { banner: "କେରଳ ରାଜ୍ୟ ଲଟେରୀ ଲାଇଭ୍ ରେଜଲ୍ଟ ଆଜិ", resultLabel: "ଆଜିର ଫଳାଫଳ:", chooseLang: "👉 ନିଜର ଭାଷା ବାଛନ୍ତୁ 👈", enterName: "👉 ଆପଣଙ୍କ ନାମ ଲେଖନ୍ତୁ 👈", namePlaceholder: "ନାମ ଏଠାରେ ଲେଖନ୍ତୁ", enterWhatapp: "📲 ଆପଣଙ୍କ ହ୍ୱାଟ୍ସଆପ୍ ନମ୍ବର ଦିଅନ୍ତୁ 📱", whatsappPlaceholder: "මୋବାଇଲ୍ ନମ୍ବର ଲେଖନ୍ତୁ", chooseTicket: "🥳 ଆପଣଙ୍କ ଭାଗ୍ୟଶାଳୀ ଟିକେଟ୍ ବାଛନ୍ତୁ 🥳", selectedText: "ଚୟନିତ:", ticketUnit: "ଟିକେଟ୍", amountText: "ଆକାଉଣ୍ଟ୍ ରାଶି:", submitBtn: "📲 ପେମେଣ୍ଟ କନଫର୍ମ କରନ୍ତុ ଏବଂ ଟିକେଟ୍ ପାଆନ୍ତୁ", liveFrom: "ରୁ", liveBookedText: "🎟️ ({num}) ଟିକେଟ୍ ବୁକ୍ କଲେ", livePaidText: "₹{amt} ପେମେଣ୍ଟ ହେଲା", alertName: "ଦୟାକରି ଆପଣଙ୍କ ନାମ ଲେଖନ୍ତୁ", alertPhone: "ଦୟาକରି ଆପଣଙ୍କ ମୋବାଇଲ୍ ନମ୍ବର ଲେଖନ୍ତୁ", alertTicket: "ଦୟାକରି ଅତିକମରେ ଗୋଟିଏ ଟିକେଟ୍ ବାଛନ୍ତୁ!" },
+    pa: { banner: "ਕੇਰਲ ਸਟੇਟ ਲਾਟਰੀ ਲਾਈਵ ਨਤੀਜਾ ਅੱਜ", resultLabel: "ਅੱਜ ਦਾ ਨਤੀਜਾ:", chooseLang: "👉 ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ 👈", enterName: "👉 ਆਪਣਾ ਨਾਮ ਦਰਜ ਕਰੋ 👈", namePlaceholder: "ਨਾਮ ਇੱਥੇ ਲਿਖੋ", enterWhatapp: "📲 ਆਪਣਾ ਵਟਸਐਪ ਨੰਬਰ ਦਰਜ ਕਰੋ 📱", whatsappPlaceholder: "ਮੋਬਾਈਲ ਨੰਬਰ ਲਿਖੋ", chooseTicket: "🥳 ਆਪਣਾ ਲੱਕੀ ਟਿਕਟ ਨੰਬਰ ਚੁਣੋ 🥳", selectedText: "ਚੁਣਿਆ ਗਿਆ:", ticketUnit: "ਟਿਕਟ", amountText: "ਕੁੱਲ ਰਕਮ:", submitBtn: "📲 ਪੇਮੈਂਟ ਕਨਫਰਮ ਕਰੋ ਤੇ ਟਿਕਟ ਲਓ", liveFrom: "ਤੋਂ", liveBookedText: "🎟️ ({num}) ਟਿਕਟ ਬੁੱਕ ਕੀਤੇ", livePaidText: "₹{amt} ਭੁਗਤਾਨ ਕੀਤਾ", alertName: "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਨਾਮ ਲਿਖੋ", alertPhone: "ਕਿਰਪา ਕਰਕੇ ਆਪਣਾ ਮੋਬਾਈਲ ਨੰਬਰ ਲਿਖੋ", alertTicket: "ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਟਿਕਟ ਚੁਣੋ!" },
+    as: { banner: "কেৰেলা ৰাজ্যিক লটাৰী লাইভ ফলাফল আজি", resultLabel: "আজিৰ ফলাফল:", chooseLang: "👉 আপোনাৰ ভাষা বাছনি কৰক 👈", enterName: "👉 আপোনাৰ নাম লিখক 👈", namePlaceholder: "নাম ইয়াত লিখক", enterWhatapp: "📲 আপোনাৰ হোৱাটছএপ নম্বৰ দিয়ক 📱", whatsappPlaceholder: "ম'বাইল নম্বৰ লিখক", chooseTicket: "🥳 আপোনাৰ ভাগ্যশালী টিকট নম্বৰ বাছক 🥳", selectedText: "বাছনি কৰা হৈছে:", ticketUnit: "টিকট", amountText: "মুঠ ধন:", submitBtn: "📲 পেমেন্ট নিশ্চিত কৰক আৰু টিকট লওক", liveFrom: "পৰা", liveBookedText: "🎟️ ({num}) টিকট বুক কৰিলে", livePaidText: "₹{amt} পৰিশোধ কৰা হ’ল", alertName: "অনুগ্ৰহ কৰি আপোনাৰ নাম লিখক", alertPhone: "অনুগ্ৰহ কৰি ম'বাইল নম্বৰ লিখক", alertTicket: "অনুগ্ৰহ কৰি অন্ততঃ এটা টিকট বাছনি কৰক!" },
+    ur: { banner: "کیرالہ اسٹیٹ لاتری لائیو رزلٹ آج", resultLabel: "آج کا رزلٹ:", chooseLang: "👉 اپنی زبان منتخب کریں 👈", enterName: "👉 اپنا نام درج کریں 👈", namePlaceholder: "اپنا نام یہاں لکھیں", enterWhatapp: "📲 اپنا واٹس ایپ نمبر درج کریں 📱", whatsappPlaceholder: "موبائل नंबर लिखें", chooseTicket: "🥳 اپنا لکی ٹکٹ نمبر منتخب کریں 🥳", selectedText: "منتخب کردہ:", ticketUnit: "ٹکٹ", amountText: "کل رقم:", submitBtn: "📲 ادائیگی کی تصدیق کریں اور ٹکٹ حاصل کریں", liveFrom: "سے", liveBookedText: "🎟️ ({num}) ٹکٹ بک کیے", livePaidText: "₹{amt} ادا کیے", alertName: "براہ کرم اپنا نام درج کریں", alertPhone: "براہ کرم اپنا موبائل نمبر درج کریں", alertTicket: "براہ کرم کم از کم एक टिकट मुन्तखब करें!" },
+    sat: { banner: "ᱠᱮᱨᱟᱞᱟ ᱥᱴᱮᱴ ᱞᱚᱴᱟᱨᱤ ᱞᱟᱭᱤᱵᱽ ᱨᱮᱡᱟᱞᱴ ᱛᱮᱦᱮᱧ", resultLabel: "ᱛᱮᱦᱮᱧᱟᱜ ᱨᱮᱡᱟᱞᱴ:", chooseLang: "👉 ᱟᱯᱱᱟᱨᱟᱜ ᱯᱟᱹᱨᱥᱤ ᱵᱟਚᱷাও ᱢᱮ 👈", enterName: "👉 ᱟᱢᱟᱜ ᱧᱩᱛᱩᱢ ᱚᱞ ᱢᱮ 👈", namePlaceholder: "ᱧᱩᱛᱩᱢ ᱚᱞ ᱢᱮ", enterWhatapp: "📲 ᱟᱢᱟᱜ व्हाट्सएप ᱱᱚމᱵᱚᱨ ᱚᱞ ᱢᱮ 📱", whatsappPlaceholder: "ᱢᱚᱵᱟᱭᱤᱞ ᱱᱚމᱵᱚᱨ", chooseTicket: "🥳 ᱟᱢᱟᱜ ᱞᱟᱠᱤ ᱴᱤᱠᱮᱴ ᱵᱟਚᱷᱟᱣ ᱢᱮ 🥳", selectedText: "ᱵᱟᱪᱷᱟᱣ ᱟᱠᱟᱱ:", ticketUnit: "ᱴᱤᱠᱮᱴ", amountText: "ᱞᱮᱠᱷﺎ ᱴᱟᱠᱟ:", submitBtn: "📲 ᱴᱟਕᱟ ᱮᱢ ᱠᱟᱛᱮ ᱴᱤᱠᱮᱴ ᱦᱟᱛﺎᱣ ᱢᱮ", liveFrom: "ᱠᱷᱚն", liveBookedText: "🎟️ ({num}) ᱴᱤᱠᱮᱴ ᱵᱩᱠ ᱠᱮᱫᱟ", livePaidText: "₹{amt} ᱮᱢ ᱠᱮᱫᱟ", alertName: "ᱫᱚᱭา ᱠᱟᱛᱮ ᱧᱩᱛᱩᱢ ᱚᱞ ᱢᱮ", alertPhone: "ᱫᱚᱭᱟ ᱠᱟᱛᱮ ᱢᱚᱵᱟᱭᱤᱞ ᱱᱚމᱵᱚᱨ ᱚᱞ ᱢᱮ", alertTicket: "ᱫᱚᱭา ᱠᱟᱛᱮ ᱢᱤᱫᱴﺎᱝ ᱴᱤᱠᱮᱴ ᱵᱟଚᱷאו ᱢᱮ!" },
+    sa: { banner: "केरलराज्यभाग्यपत्रिका तल्समयं फलम् अद्य", resultLabel: "अद्यतनं फलम्:", chooseLang: "👉 स्वभाषां चिनोतु 👈", enterName: "👉 स्वनाम लिखतु 👈", namePlaceholder: "नाम अत्र लिखतु", enterWhatapp: "📲 स्वकीय-व्हाट्सएप्प-सङ्ख्यां लिखतु 📱", whatsappPlaceholder: "चलदूरभाषसङ्ख्या लिखतु", chooseTicket: "🥳 भाग्यशाली संख्यां चिनोतु 🥳", selectedText: "चितम्:", ticketUnit: "पत्रम्", amountText: "मूल्यम्:", submitBtn: "📲 धनं दत्त्वा पत्रं प्राप्नोतु", liveFrom: "तः", liveBookedText: "🎟️ ({num}) पत्रं क्रीतवान्", livePaidText: "₹{amt} दत्तम्", alertName: "कृपया स्वनाम लिखतु", alertPhone: "कृपया चलदूरभाषसङ्ख्या लिखतु", alertTicket: "कृपया न्यूनतमातिन्यूनं एकं पत्रं चिनोतु!" },
+    ne: { banner: "केरल राज्य चिठ्ठा लाइभ नतिजा आज", resultLabel: "आजको नतिजा:", chooseLang: "👉 आफ्नो भाषा रोज्नुहोस् 👈", enterName: "👉 आफ्नो नाम राख्नुहोस् 👈", namePlaceholder: "नाम यहाँ लेख्नुहोस्", enterWhatapp: "📲 आफ्नो व्हाट्सएप नम्बर राख्नुहोस् 📱", whatsappPlaceholder: "मोबाइल नम्बर लेख्नुहोस्", chooseTicket: "🥳 आफ्नो लकी टिकट नम्बर रोज्नुहोस् 🥳", selectedText: "चयन गरिएको:", ticketUnit: "टिकट", amountText: "कुल रकम:", submitBtn: "📲 भुक्तानी निश्चित गरी टिकट लिनुहोस्", liveFrom: "बाट", liveBookedText: "🎟️ ({num}) टिकट बुक गरियो", livePaidText: "₹{amt} भुक्तानी भयो", alertName: "कृपया आफ्नो नाम लेख्नुहोस्", alertPhone: "कृपया मोबाइल नम्बर लेख्नुहोस्", alertTicket: "कृपया कम्तिमा एउटा टिकट रोज्नुहोस्!" },
+    kok: { banner: "केरल राज्य लॉटरी लाईव्ह निकाल आज", resultLabel: "आजचो निकाल:", chooseLang: "👉 तुमची भाषा वेंचून काढा 👈", enterName: "👉 तुमचें नांव बरयात 👈", namePlaceholder: "नांव हांगा बरयात", enterWhatapp: "📲 तुमचो व्हॉट्सॲप नंबर बरयात 📱", whatsappPlaceholder: "मोबाईल नंबर", chooseTicket: "🥳 तुमचो लकी तिकीट नंबर वेंचून काढा 🥳", selectedText: "वेेंचिल्लें:", ticketUnit: "तिकीट", amountText: "एकूण रक्कम:", submitBtn: "📲 पेमेंट नक्की करात आनी तिकीट मेळयात", liveFrom: "सावून", liveBookedText: "🎟️ ({num}) तिकीट book केलें", livePaidText: "₹{amt} फारीक केले", alertName: "कृपया तुमचें नांव बरयात", alertPhone: "कृपया मोबाईल नंबर बरयात", alertTicket: "कृपया एक तिकीट तरी वेंचून काढा!" },
+    mai: { banner: "केरल स्टेट लॉटरी लाइव रिजल्ट आज", resultLabel: "आजुक रिजल्ट:", chooseLang: "👉 अपन भाषा चुनू 👈", enterName: "👉 अपन नाम लिखू 👈", namePlaceholder: "नाम एतय लिखू", enterWhatapp: "📲 अपन व्हाट्सएप नंबर लिखू 📱", whatsappPlaceholder: "मोबाइल नंबर लिखू", chooseTicket: "🥳 अपन लकी टिकट नंबर चुनू 🥳", selectedText: "चयनित:", ticketUnit: "टिकट", amountText: "कुल राशि:", submitBtn: "📲 भुगतान क क टिकट पाऊ", liveFrom: "स", liveBookedText: "🎟️ ({num}) टिकट book कएलनि", livePaidText: "₹{amt} भुगतान कएल", alertName: "कृपया अपन नाम लिखू", alertPhone: "कृपया mobile नंबर लिखू", alertTicket: "कृपया कम स कम एकटा टिकट चुनू!" },
+    doi: { banner: "केरल स्टेट लॉटरी लाइव नतीजा आज", resultLabel: "आज दा नतीजा:", chooseLang: "👉 अपनी बोली चुनो 👈", enterName: "👉 अपना नां पाओ 👈", namePlaceholder: "नां एत्थ लिखो", enterWhatapp: "📲 अपना व्हाट्सएप नंबर पाओ 📱", whatsappPlaceholder: "मोबाइल नंबर", chooseTicket: "🥳 अपना लकी टिकट नंबर चुनो 🥳", selectedText: "चुने दा:", ticketUnit: "टिकट", amountText: "कुल पैसे:", submitBtn: "📲 पैसे देई य त टिकट लेओ", liveFrom: "थमा", liveBookedText: "🎟️ ({num}) टिकट बुक कीते", livePaidText: "₹{amt} दित्ते", alertName: "कृपया अपना नां लिखो", alertPhone: "कृपया मोबाइल नंबर पाओ", alertTicket: "कृपया घट्टो-घट्ट इक टिकट चुनो!" },
+    mni: { banner: "केराला स्टेट लॉटरी लाइव रिजल्ट ঙসি", resultLabel: "ঙসিগী রেজল্ট:", chooseLang: "👉 लोन्दा खিয়া খণবীয়ൂ 👈", enterName: "👉 इबुंगो/इबेम্মা কো মিং ইবীরकউ 👈", namePlaceholder: "মিং ইবীরকউ", enterWhatapp: "📲 व्हाट्सएप নম্বর ইবীরকউ 📱", whatsappPlaceholder: "মোবাইল নম্বর", chooseTicket: "🥳 লকী टिकट নম্বর খনবীয়ൂ 🥳", selectedText: "খনখ್ರবা:", ticketUnit: "टिकट", amountText: "অপুনবা মমল:", submitBtn: "📲 পেমেন্ট কনফার্ম তৌবীরগা টিকিট লৌবীয়ൂ", liveFrom: "দগী", liveBookedText: "🎟️ ({num}) টিকিট বুক তৌখ্রে", livePaidText: "₹{amt} পেমেন্ট তৌখ্রে", alertName: "অনুগ্ৰহ তৌদুনা মিং ইবীরকউ", alertPhone: "অনুগ্ৰহ তৌদুনা মোবাইল নম্বর ইবীরকউ", alertTicket: "অনুগ্ৰহ তৌদুনা খ্বাইদগী কমদবদা টিকিট অমা খনবীয়ൂ!" },
+    brx: { banner: "केरल स्टेट लटारी लाइव फिथाय दिनै", resultLabel: "दिनैनी फिथाय:", chooseLang: "👉 गावनि राव सायख' 👈", enterName: "👉 गावनि मुं लिर 👈", namePlaceholder: "मुं एसेव लिर", enterWhatapp: "📲 गावनि ह्वाट्सएप नम्बर लिर 📱", whatsappPlaceholder: "मबाइल नम्बर", chooseTicket: "🥳 गावनि लकी टिकेट सायख' 🥳", selectedText: "सायखनाय:", ticketUnit: "टिकेट", amountText: "गासै रां:", submitBtn: "📲 रां होना टिकेट ला", liveFrom: "निफ्राय", liveBookedText: "🎟️ ({num}) टिकेट बुकिं खालामबाय", livePaidText: "₹{amt} रां जाबाय", alertName: "अननानै मुं लिर", alertPhone: "अननानै मबाइल नम्बर लिर", alertTicket: "अननानै एसेब्लाबो मोनसे टिकेट सायख'!" },
+    ks: { banner: "کیرالہ اسٹیٹ لاٹری لائیو نتیجہ از", resultLabel: "ازک نتیجہ:", chooseLang: "👉 پین زبان چھنیو 👈", enterName: "👉 پین ناو لیکھیو 👈", namePlaceholder: "ناو ہیمہ پاٹھی لیکھیو", enterWhatapp: "📲 پین واٹس ایپ نمبر درج کڑیو 📱", whatsappPlaceholder: "موبائل نمبر", chooseTicket: "🥳 پین لکی ٹکٹ نمبر چھنیو 🥳", selectedText: "چھنامت:", ticketUnit: "ٹکٹ", amountText: "کل رقم:", submitBtn: "📲 ادائیگی کنفرم کڑیو تہ ٹکٹ رٹیو", liveFrom: "پیٹھے", liveBookedText: "🎟️ ({num}) ٹکٹ بک کئیر", livePaidText: "₹{amt} دیت", alertName: "مهربانی کڑتھ ناو لیکھیو", alertPhone: "مهربانی کڑتھ موبائل نمبر لیکھیو", alertTicket: "مهربانی کڑتھ چھنیو کم از کم اکھ ٹکٹ!" },
+    sd: { banner: "کيرالا اسٽيٽ لاٽري لائيو رزلٽ اڄ", resultLabel: "اڄ جو رزلٽ:", chooseLang: "👉 پنهنجي ٻولي چونڊيو 👈", enterName: "👉 پنهنجو نالو لکو 👈", namePlaceholder: "نالو هتي لکو", enterWhatapp: "📲 پنهنجو واٽس اپ نمبر لکو 📱", whatsappPlaceholder: "موبائل نمبر لکو", chooseTicket: "🥳 پنهنجو لڪي ٽڪيٽ نمبر چونڊيو 🥳", selectedText: "چونڊيل:", ticketUnit: "ٽڪيٽون", amountText: "ڪل رقم:", submitBtn: "📲 پيمنٽ ڪنفرم ڪريو ۽ ٽڪيٽ وٺو", liveFrom: "تان", liveBookedText: "🎟️ ({num}) ٽڪيٽون بڪ ڪيون", livePaidText: "₹{amt} ادا ڪيا", alertName: "مهرباني ڪري نالو لکو", alertPhone: "مهرباني ڪري موبائل نمبر لکو", alertTicket: "مهرباني ڪري گهٽ ۾ گهٽ هڪ ٽڪيٽ چونڊيو!" }
+};
+
+let currentLang = "en";
+let lastGeneratedTickets = 1;
+let lastGeneratedAmount = 149;
+
+// STATE ENGINE GENERATES REGIONAL FULL NAMES
+function runLiveActivity(){
+    const targetRow = indiaStateDatabase[Math.floor(Math.random() * indiaStateDatabase.length)];
+    const randomState = targetRow.state;
+    const randomFullName = targetRow.names[Math.floor(Math.random() * targetRow.names.length)];
+    
+    lastGeneratedTickets = Math.floor(Math.random() * 4) + 1;
+    lastGeneratedAmount = lastGeneratedTickets * 149;
+
+    document.getElementById("live-user-name").innerText = randomFullName;
+    document.getElementById("live-user-state").innerText = randomState;
+    renderLiveBoxText();
+}
+runLiveActivity();
+setInterval(runLiveActivity, 5000);
+
+function renderLiveBoxText() {
+    const lang = fullPageTranslations[currentLang] || fullPageTranslations.en;
+    document.getElementById("live-from-text").innerText = lang.liveFrom;
+    document.getElementById("live-user-tickets").innerText = lang.liveBookedText.replace("{num}", lastGeneratedTickets);
+    document.getElementById("live-user-paid").innerText = lang.livePaidText.replace("{amt}", lastGeneratedAmount);
+}
+
+// LIVE TICKER ENGINE
+setInterval(()=>{
+    const randomNumber = Math.floor(100000 + Math.random()*900000);
+    document.getElementById("live-ticket-ticker").innerText = `KL-${randomNumber}`;
+}, 4000);
+
+// MULTI-LANGUAGE TRANSLATOR TRIGGER
+document.getElementById("langSelect").addEventListener("change", function(){
+    currentLang = this.value;
+    const lang = fullPageTranslations[currentLang] || fullPageTranslations.en;
+
+    document.getElementById("sub-banner-text").innerText = lang.banner;
+    document.getElementById("result-label").innerText = lang.resultLabel;
+    document.getElementById("language-label").innerText = lang.chooseLang;
+    document.getElementById("name-label").innerText = lang.enterName;
+    document.getElementById("custName").placeholder = lang.namePlaceholder;
+    document.getElementById("whatsapp-label").innerText = lang.enterWhatapp;
+    document.getElementById("custWhatsapp").placeholder = lang.whatsappPlaceholder;
+    document.getElementById("ticket-label").innerText = lang.chooseTicket;
+    document.getElementById("selected-text").innerText = lang.selectedText;
+    document.getElementById("ticket-unit").innerText = lang.ticketUnit;
+    document.getElementById("amount-text").innerText = lang.amountText;
+    document.getElementById("submit-btn").innerText = lang.submitBtn;
+
+    renderLiveBoxText();
+});
+
+// TICKETS GRID LOADER
+const ticketsGrid = document.getElementById("tickets-grid");
+let selectedTickets = [];
+const ticketPrice = 149; 
+
+for(let i=1; i<=200; i++){
+    const randomDigits = Math.floor(100000 + Math.random()*900000);
+    const ticketID = `KL${randomDigits}`;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "border border-slate-300 text-slate-700 font-bold p-2 rounded-xl text-xs flex items-center justify-center gap-1 bg-white hover:bg-slate-100 transition cursor-pointer shadow-sm";
+    btn.innerHTML = `🎫 <span>${ticketID}</span>`;
+
+    btn.onclick = function(){
+        const index = selectedTickets.indexOf(ticketID);
+        if(index > -1){
+            selectedTickets.splice(index,1);
+            this.className = "border border-slate-300 text-slate-700 font-bold p-2 rounded-xl text-xs flex items-center justify-center gap-1 bg-white hover:bg-slate-100 transition cursor-pointer shadow-sm";
+        }else{
+            selectedTickets.push(ticketID);
+            this.className = "bg-slate-800 text-amber-400 border border-slate-800 font-black p-2 rounded-xl text-xs flex items-center justify-center gap-1 cursor-pointer shadow-md";
+        }
+        document.getElementById("ticketCount").innerText = selectedTickets.length;
+        document.getElementById("totalAmount").innerText = `₹${selectedTickets.length * ticketPrice}`;
+    };
+    ticketsGrid.appendChild(btn);
+}
+
+// DISPATCH LINK GENERATOR
+function sendToWhatsApp(){
+    const nameInput = document.getElementById("custName").value.trim();
+    const whatsappInput = document.getElementById("custWhatsapp").value.trim();
+    const lang = fullPageTranslations[currentLang] || fullPageTranslations.en;
+
+    if(nameInput === ""){ alert(lang.alertName); return; }
+    if(whatsappInput === ""){ alert(lang.alertPhone); return; }
+    if(selectedTickets.length === 0){ alert(lang.alertTicket); return; }
+
+    const totalBill = selectedTickets.length * ticketPrice;
+    
+    const textMessage = 
+`*NEW MEGA JACKPOT BOOKING*
+
+👤 *Name:* ${nameInput}
+📞 *WhatsApp:* ${whatsappInput}
+
+🎟️ *Selected Tickets (${selectedTickets.length}):*
+${selectedTickets.join(", ")}
+
+💰 *Amount:* ₹${totalBill}
+
+*Status:* Pending Payment Confirmation`;
+
+    const encryptedText = encodeURIComponent(textMessage);
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=91${MY_WHATSAPP_NUMBER}&text=${encryptedText}`;
+
+    window.open(whatsappUrl, '_blank');
+}
+</script>
+</body>
+</html>
